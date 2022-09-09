@@ -1,5 +1,17 @@
 package com.upe.dce.core.ocorrencia;
 
-public class OcorrenciaService {
+import java.util.List;
 
+public interface OcorrenciaService {
+	List<Ocorrencia> listarOcorrencias();
+	
+	Ocorrencia buscarPorIdOcorrencia(Long id);
+	
+	Ocorrencia buscarPorIdUsuario(Long id);
+	
+	Ocorrencia incluirOcorrencia(Ocorrencia ocorrencia);
+	
+	Ocorrencia alterarOcorrencia(Ocorrencia ocorrencia);
+	
+	void excluirOcorrencia(Long id);
 }
