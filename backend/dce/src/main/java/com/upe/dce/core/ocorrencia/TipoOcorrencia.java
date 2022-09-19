@@ -1,6 +1,11 @@
 package com.upe.dce.core.ocorrencia;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 import com.upe.dce.utilities.Entidade;
 
@@ -18,7 +23,11 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-public class TipoOcorrencia extends Entidade {
-	private Long id;
-	private String descricao;
+public class TipoOcorrencia {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
+	
+	@Enumerated(EnumType.STRING)
+	private TipoOcorrenciaEnum tipoOcorrenciaEnum;
 }
