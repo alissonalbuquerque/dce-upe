@@ -10,7 +10,7 @@ public class OcorrenciaServiceImpl implements OcorrenciaService {
 
 	@Autowired
 	OcorrenciaRepository ocorrenciaRepositorio;
-	
+
 	@Override
 	public List<Ocorrencia> listarOcorrencias() {
 		// TODO Auto-generated method stub
@@ -19,12 +19,6 @@ public class OcorrenciaServiceImpl implements OcorrenciaService {
 
 	@Override
 	public Ocorrencia buscarPorIdOcorrencia(Long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Ocorrencia buscarPorIdUsuario(Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -43,7 +37,7 @@ public class OcorrenciaServiceImpl implements OcorrenciaService {
 	@Override
 	public void excluirOcorrencia(Long id) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

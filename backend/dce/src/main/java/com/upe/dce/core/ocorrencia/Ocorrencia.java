@@ -6,7 +6,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 
 import com.upe.dce.utilities.Entidade;
 
@@ -27,11 +26,11 @@ import lombok.experimental.SuperBuilder;
 public class Ocorrencia extends Entidade {
 	private String titulo;
 	private String descricao;
-	
-	//Usuario criadorOcorrencia
-	//Usuario vitima
-	//Usuario agressor
-	
+
+	// Usuario criadorOcorrencia
+	// Usuario vitima
+	// Usuario agressor
+
 	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST,
 			CascadeType.MERGE }, targetEntity = TipoOcorrencia.class)
 	private List<TipoOcorrencia> tiposOcorrencia;
