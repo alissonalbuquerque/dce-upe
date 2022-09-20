@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.upe.dce.utilities.exception.DceException;
+import com.upe.dce.utilities.validation.ValidacaoUtil;
 
 @Service
 public class OcorrenciaServiceImpl implements OcorrenciaService {
@@ -29,11 +30,13 @@ public class OcorrenciaServiceImpl implements OcorrenciaService {
 
 	@Override
 	public Ocorrencia incluirOcorrencia(Ocorrencia ocorrencia) {
+		ValidacaoUtil.validar(ocorrencia);
 		return ocorrenciaRepositorio.save(ocorrencia);
 	}
 
 	@Override
 	public Ocorrencia alterarOcorrencia(Ocorrencia ocorrencia) {
+		ValidacaoUtil.validar(ocorrencia);
 		
 		if (!ocorrenciaRepositorio.findById(ocorrencia.getId()).isPresent()) {
 			throw new DceException("Informe um identificador válido para a ocorrencia alterada");
