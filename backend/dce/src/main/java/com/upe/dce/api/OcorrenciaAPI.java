@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -27,14 +28,12 @@ public class OcorrenciaAPI {
 
 	@GetMapping("/ocorrencias")
 	public ResponseEntity<List<Ocorrencia>> listarOcorrencias() {
-		// TODO
-		return null;
+		return ResponseEntity.ok(ocorrenciaServico.listarOcorrencias());
 	}
 
 	@GetMapping("/ocorrencia/{id}")
 	public ResponseEntity<Ocorrencia> buscarOcorrenciaPorId(@PathVariable Long id) {
-		// TODO
-		return null;
+		return ResponseEntity.ok(ocorrenciaServico.buscarPorIdOcorrencia(id));
 	}
 
 	@PostMapping("/ocorrencia")
@@ -46,14 +45,17 @@ public class OcorrenciaAPI {
 		return ResponseEntity.created(uri).body(novaOcorrencia);
 	}
 
-	@PutMapping("ocorrencia/{id}")
-	public ResponseEntity<Ocorrencia> buscarOcorrenciaPorUsuario(@PathVariable Long id, Ocorrencia ocorrencia) {
-		// TODO
-		return null;
+	@PutMapping("/ocorrencia")
+	public ResponseEntity<Ocorrencia> alterarOcorrencia(@RequestBody Ocorrencia ocorrencia) {
+		URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("api/ocorrencia").toUriString());
+
+		Ocorrencia ocorrenciaAlterada = ocorrenciaServico.alterarOcorrencia(ocorrencia);
+
+		return ResponseEntity.created(uri).body(ocorrenciaAlterada);
 	}
 
 	@DeleteMapping("ocorrencia/{id}")
 	public void excluirOcorrencia(@PathVariable Long id) {
-		// TODO
+		ocorrenciaServico.excluirOcorrencia(id);
 	}
 }

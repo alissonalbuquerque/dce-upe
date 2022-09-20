@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.upe.dce.utilities.exception.DceException;
+
 @Service
 public class OcorrenciaServiceImpl implements OcorrenciaService {
 
@@ -13,14 +15,16 @@ public class OcorrenciaServiceImpl implements OcorrenciaService {
 
 	@Override
 	public List<Ocorrencia> listarOcorrencias() {
-		// TODO Auto-generated method stub
-		return null;
+		return ocorrenciaRepositorio.findAll();
 	}
 
 	@Override
 	public Ocorrencia buscarPorIdOcorrencia(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		if (!ocorrenciaRepositorio.findById(id).isPresent()) {
+			throw new DceException("Informe um identificador válido para a ocorrencia alterada");
+		}
+		
+		return ocorrenciaRepositorio.findById(id).get();
 	}
 
 	@Override
@@ -30,14 +34,28 @@ public class OcorrenciaServiceImpl implements OcorrenciaService {
 
 	@Override
 	public Ocorrencia alterarOcorrencia(Ocorrencia ocorrencia) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		if (!ocorrenciaRepositorio.findById(ocorrencia.getId()).isPresent()) {
+			throw new DceException("Informe um identificador válido para a ocorrencia alterada");
+		}
+		
+		Ocorrencia ocorrenciaExistente = ocorrenciaRepositorio.findById(ocorrencia.getId()).get();
+		
+		if (ocorrencia.getTiposOcorrencia() == null) {
+			ocorrencia.setTiposOcorrencia(ocorrenciaExistente.getTiposOcorrencia());
+		}
+		
+		return ocorrenciaRepositorio.save(ocorrencia);
+		
 	}
 
 	@Override
 	public void excluirOcorrencia(Long id) {
-		// TODO Auto-generated method stub
-
+		if (!ocorrenciaRepositorio.findById(id).isPresent()) {
+			throw new DceException("Informe um identificador válido para a ocorrencia alterada");
+		}
+		
+		ocorrenciaRepositorio.delete(ocorrenciaRepositorio.findById(id).get());
 	}
 
 }
