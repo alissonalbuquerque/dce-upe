@@ -34,10 +34,6 @@ public class Ocorrencia extends Entidade {
 	@Size(message = "A descrição deve estar entre 20 e 200 caracteres", min = 20, max = 200)
 	private String descricao;
 
-	// Usuario criadorOcorrencia
-	// Usuario vitima
-	// Usuario agressor
-
 	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST,
 			CascadeType.MERGE }, targetEntity = TipoOcorrencia.class)
 	private List<TipoOcorrencia> tiposOcorrencia;
