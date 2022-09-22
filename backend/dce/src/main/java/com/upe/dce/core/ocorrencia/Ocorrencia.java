@@ -6,9 +6,11 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.upe.dce.core.usuario.Usuario;
 import com.upe.dce.utilities.Entidade;
 
 import lombok.AllArgsConstructor;
@@ -37,4 +39,7 @@ public class Ocorrencia extends Entidade {
 	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST,
 			CascadeType.MERGE }, targetEntity = TipoOcorrencia.class)
 	private List<TipoOcorrencia> tiposOcorrencia;
+	
+	@OneToMany(mappedBy = "ocorrencia", cascade = CascadeType.ALL)
+	private List<OcorrenciaUsuario> ocorrenciasUsuarios;
 }

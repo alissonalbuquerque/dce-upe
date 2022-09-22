@@ -6,6 +6,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -13,6 +14,7 @@ import org.hibernate.annotations.NaturalId;
 import org.hibernate.validator.constraints.br.CPF;
 
 import com.upe.dce.core.ocorrencia.Ocorrencia;
+import com.upe.dce.core.ocorrencia.OcorrenciaUsuario;
 import com.upe.dce.utilities.Entidade;
 
 import lombok.AllArgsConstructor;
@@ -39,7 +41,6 @@ public class Usuario extends Entidade {
 
 	private String endereco;
 
-	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST,
-			CascadeType.MERGE }, targetEntity = Ocorrencia.class)
-	private List<Ocorrencia> ocorrencias;
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+	private List<OcorrenciaUsuario> ocorrenciasUsuarios;
 }
