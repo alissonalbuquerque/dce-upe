@@ -1,5 +1,7 @@
 package com.upe.dce.core.usuario;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -43,4 +45,7 @@ public class Usuario extends Entidade {
 
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
 	private List<OcorrenciaUsuario> ocorrenciasUsuarios;
+
+	@ManyToMany(fetch = FetchType.EAGER)
+	private Collection<TipoUsuario> tipoUsuario = new ArrayList<>();
 }
