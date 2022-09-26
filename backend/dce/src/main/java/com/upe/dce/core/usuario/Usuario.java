@@ -73,6 +73,6 @@ public class Usuario extends Entidade {
 	@ManyToMany(fetch = FetchType.EAGER)
 	private Collection<TipoUsuario> tipoUsuario = new ArrayList<>();
 	
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.LAZY)
 	private List<Endereco> enderecos;
 }
