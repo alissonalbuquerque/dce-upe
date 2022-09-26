@@ -5,6 +5,8 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.upe.dce.core.usuario.UsuarioService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -28,7 +30,6 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @Slf4j
 public class FilterAuthentication extends UsernamePasswordAuthenticationFilter {
   private final AuthenticationManager authManager;
-  private UsuarioService usuarioService;
 
   public FilterAuthentication(AuthenticationManager authManager) {
     this.authManager = authManager;
