@@ -55,7 +55,7 @@ public class OcorrenciaServiceImpl implements OcorrenciaService {
 	@Override
 	public void excluirOcorrencia(Long id) {
 		if (!ocorrenciaRepositorio.findById(id).isPresent()) {
-			throw new DceException("Informe um identificador válido para a ocorrencia alterada");
+			throw new DceException("Informe um identificador válido para a ocorrencia a ser apagada");
 		}
 		
 		ocorrenciaRepositorio.delete(ocorrenciaRepositorio.findById(id).get());
