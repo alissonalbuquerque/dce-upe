@@ -6,6 +6,7 @@ import lombok.Data;
 @Data
 @Builder
 public class EnderecoDTO {
+	private Long id;
 	private String cep;
 	private String logradouro;
 	private String complemento;

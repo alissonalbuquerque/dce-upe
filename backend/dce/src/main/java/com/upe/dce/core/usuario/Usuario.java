@@ -60,13 +60,6 @@ public class Usuario extends Entidade {
 	)
 	private String cpf;
 
-	@Column(
-			name = "endereco",
-			nullable = true,
-			columnDefinition = "TEXT"
-	)
-	private String endereco;
-
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
 	private List<OcorrenciaUsuario> ocorrenciasUsuarios;
 

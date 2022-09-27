@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 @Builder
 public class OcorrenciaUsuarioDTO {
-	private Long id;
-	private UsuarioDTO usuario;
+	private Long idOcorrencia;
+	private Long idUsuario;
 	private PerfilEnum perfilUsuario;
 }

@@ -13,11 +13,13 @@ import javax.persistence.Table;
 
 import com.upe.dce.core.usuario.Usuario;
 
+import lombok.Builder;
 import lombok.Data;
 
 @Entity(name = "OcorrenciaUsuario")
 @Table(name = "ocorrencia_usuario")
 @Data
+@Builder
 public class OcorrenciaUsuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

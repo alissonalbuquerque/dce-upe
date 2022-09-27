@@ -10,7 +10,7 @@ import lombok.Data;
 public class UsuarioDTO {
 	private String nome;
 	private String cpf;
-	private EnderecoDTO endereco;
+	private List<EnderecoDTO> enderecos;
 	private List<OcorrenciaUsuarioDTO> ocorrencias;
 	private List<TipoUsuarioDTO> perfis;
 }
