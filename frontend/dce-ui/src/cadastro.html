@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>tela de cadastro</title>
+    <link rel="stylesheet" href="css/styleCadastro.css" type="text/css" >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+</head>
+<body>
+    <div id="principal"><!-- Início Principal-->
+        <div id="header_container"><!-- Início Header-->
+               <a class="logo"><img src="imagens/upe-logo.png" width="100px"></a>
+
+               <div id = "navegacao">
+                <ul >
+                    <li>
+                        <a href="index.html" style="margin-right: 50px; width: 40px;"> <img src="imagens/homee.png" width="23px"> Inicio
+                        </a>
+                    </li>
+                    <li>
+                        <a href="index.html" style="margin-right: 50px; width: 40px;"> <img src="imagens/userlogin.png" width="23px"> Login
+                        </a>
+                    </li>
+                    <li>
+                        <a href="index.html" style=>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            </div>
+        </div><!-- Fim Header-->
+
+        <div id="cadastro_container">
+        	<h1>Cadastrar Usuário</h1>
+        	<div id="dataInputs"> 
+        		<input type="text" name="nome" style="width: 85%;" placeholder="Nome de Usuário" id="name">
+        		<input type="text" name="email" class="cadastro" placeholder="Cadastrar Email" id="email">
+        		<input type="text" name="password" class="cadastro" placeholder="Nova Senha" id="password">
+                <input type="text" name="password_confirm" class="cadastro" placeholder="Confirmar Senha" id="password_confirm">
+    
+        		<button id="btnCadastrar">Cadastrar</button>
+        		
+        	</div>
+        </div>
+    </div><!-- Fim Principal-->
+
+    <script src="script/scriptCadastro.js"></script>
+</body>
+</html>
