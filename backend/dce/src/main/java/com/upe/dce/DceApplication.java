@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
+import com.upe.dce.api.dtos.DTOConverter;
+
 @SpringBootApplication
 public class DceApplication {
 
@@ -16,5 +18,10 @@ public class DceApplication {
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
+	}
+	
+	@Bean
+	public DTOConverter localConversorBean() {
+		return new DTOConverter();
 	}
 }

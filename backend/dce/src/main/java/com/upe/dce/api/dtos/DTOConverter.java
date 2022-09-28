@@ -15,10 +15,10 @@ import com.upe.dce.core.usuario.UsuarioRepository;
 
 public class DTOConverter {
 	@Autowired
-	OcorrenciaRepository ocorrenciaRepositorio;
+	private OcorrenciaRepository ocorrenciaRepositorio;
 
 	@Autowired
-	UsuarioRepository usuarioRepositorio;
+	private UsuarioRepository usuarioRepositorio;
 
 	public OcorrenciaDTO convertToDTO(Ocorrencia ocorrencia) {
 		OcorrenciaDTO resultado = OcorrenciaDTO.builder().id(ocorrencia.getId()).titulo(ocorrencia.getTitulo())
