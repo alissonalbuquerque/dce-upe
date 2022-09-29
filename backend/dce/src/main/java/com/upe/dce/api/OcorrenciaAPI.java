@@ -21,6 +21,8 @@ import com.upe.dce.api.dtos.DTOConverter;
 import com.upe.dce.api.dtos.OcorrenciaDTO;
 import com.upe.dce.core.ocorrencia.Ocorrencia;
 import com.upe.dce.core.ocorrencia.OcorrenciaServiceImpl;
+import com.upe.dce.core.ocorrencia.PerfilEnum;
+import com.upe.dce.core.ocorrencia.TipoOcorrenciaEnum;
 
 @RequestMapping("/api")
 @RestController
@@ -47,10 +49,25 @@ public class OcorrenciaAPI {
 	@PostMapping("/ocorrencia")
 	public ResponseEntity<OcorrenciaDTO> incluirOcorrencia(@RequestBody OcorrenciaDTO dto) {
 		URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("api/ocorrencia").toUriString());
-
+		System.out.println("dto: " + dto.getTiposOcorrencias()); // Teste
 		Ocorrencia ocorrencia = conversor.convertToEntity(dto);
+		System.out.println("conversor.convertToEntity(dto): " + ocorrencia.getTiposOcorrencia());// Teste
 		OcorrenciaDTO resultado = conversor.convertToDTO(ocorrenciaServico.incluirOcorrencia(ocorrencia));
+		System.out.println("após incluir ocorrencia: " + resultado.getTiposOcorrencias());// Teste
+		return ResponseEntity.created(uri).body(resultado);
+	}
 
+	@PutMapping("/ocorrencia/{idOcorrencia}/usuario/{idUsuario}")
+	public ResponseEntity<OcorrenciaDTO> associarUsuarioOcorrencia(@PathVariable Long idOcorrencia,
+			@PathVariable Long idUsuario) {
+		URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("api/ocorrencia").toUriString());
+
+		//Tornar dinamico perfil enum
+		Ocorrencia ocorrencia = ocorrenciaServico.associarUsuarioOcorrencia(idOcorrencia, idUsuario,
+				PerfilEnum.ADMINISTRADOR);
+		
+		OcorrenciaDTO resultado = conversor.convertToDTO(ocorrencia);
+		
 		return ResponseEntity.created(uri).body(resultado);
 	}
 
@@ -60,7 +77,7 @@ public class OcorrenciaAPI {
 
 		Ocorrencia ocorrencia = conversor.convertToEntity(dto);
 		ocorrencia.setId(id);
-		
+
 		OcorrenciaDTO resultado = conversor.convertToDTO(ocorrenciaServico.alterarOcorrencia(ocorrencia));
 
 		return ResponseEntity.created(uri).body(resultado);

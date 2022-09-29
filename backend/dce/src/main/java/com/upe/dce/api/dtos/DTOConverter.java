@@ -31,7 +31,7 @@ public class DTOConverter {
 					.forEach(tipo -> resultado.getTiposOcorrencias().add(convertToDTO(tipo)));
 		}
 		
-		if (ocorrencia.getOcorrenciasUsuarios() != null && !ocorrencia.getTiposOcorrencia().isEmpty()) {
+		if (ocorrencia.getOcorrenciasUsuarios() != null && !ocorrencia.getOcorrenciasUsuarios().isEmpty()) {
 			resultado.setUsuarios(new ArrayList<OcorrenciaUsuarioDTO>());
 
 			ocorrencia.getOcorrenciasUsuarios().stream()
@@ -52,7 +52,7 @@ public class DTOConverter {
 					.forEach(tipo -> resultado.getTiposOcorrencia().add(convertToEntity(tipo)));
 		}
 		
-		if (dto.getUsuarios() != null && !dto.getTiposOcorrencias().isEmpty()) {
+		if (dto.getUsuarios() != null && !dto.getUsuarios().isEmpty()) {
 			resultado.setOcorrenciasUsuarios(new ArrayList<OcorrenciaUsuario>());
 
 			dto.getUsuarios().stream()
