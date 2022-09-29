@@ -1,11 +1,10 @@
 package com.upe.dce.core.ocorrencia;
 
-import java.util.Enumeration;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.yaml.snakeyaml.util.EnumUtils;
 
 import com.upe.dce.core.usuario.Usuario;
 import com.upe.dce.core.usuario.UsuarioRepository;
@@ -42,21 +41,27 @@ public class OcorrenciaServiceImpl implements OcorrenciaService {
 	}
 
 	@Override
-	public Ocorrencia associarUsuarioOcorrencia(Long idOcorrencia, Long idUsuario, PerfilEnum perfil) {
+	public Ocorrencia associarUsuarioOcorrencia(Long idOcorrencia, Long idUsuario, Integer idPerfil) {
 		if (!ocorrenciaRepositorio.findById(idOcorrencia).isPresent()) {
-			throw new DceException("Por favor insira um id válido para a ocorrencia");
+			throw new DceException("Por favor insira um id valido para a ocorrencia");
 		}
 
 		if (!usuarioRepositorio.findById(idUsuario).isPresent()) {
-			throw new DceException("Por favor insira um usuário válido para a ocorrência");
+			throw new DceException("Por favor insira um usuário valido para a ocorrência");
 		}
 
-		// validar enum
+		if (idPerfil == null || idPerfil < 0 || idPerfil > 3) {
+			throw new DceException("Por favor insira um id de perfil valido para o perfil do usuario");
+		}
+
+		PerfilEnum[] listaPerfis = { PerfilEnum.ADMINISTRADOR, PerfilEnum.SERVIDOR, PerfilEnum.AGRESSOR,
+				PerfilEnum.VITIMA };
+
 		Ocorrencia ocorrenciaExistente = ocorrenciaRepositorio.findById(idOcorrencia).get();
 		Usuario usuarioExistente = usuarioRepositorio.findById(idUsuario).get();
 		OcorrenciaUsuario ocorrenciaUsuario = OcorrenciaUsuario.builder().usuario(usuarioExistente)
-				.ocorrencia(ocorrenciaExistente).perfilUsuario(perfil).build();
-		
+				.ocorrencia(ocorrenciaExistente).perfilUsuario(listaPerfis[idPerfil]).build();
+
 		ocorrenciaExistente.getOcorrenciasUsuarios().add(ocorrenciaUsuario);
 
 		return ocorrenciaRepositorio.save(ocorrenciaExistente);

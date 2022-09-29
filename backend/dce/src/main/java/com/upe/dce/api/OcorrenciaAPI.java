@@ -57,14 +57,14 @@ public class OcorrenciaAPI {
 		return ResponseEntity.created(uri).body(resultado);
 	}
 
-	@PutMapping("/ocorrencia/{idOcorrencia}/usuario/{idUsuario}")
+	@PutMapping("/ocorrencia/{idOcorrencia}/usuario/{idUsuario}/perfil/{idPerfil}")
 	public ResponseEntity<OcorrenciaDTO> associarUsuarioOcorrencia(@PathVariable Long idOcorrencia,
-			@PathVariable Long idUsuario) {
+			@PathVariable Long idUsuario, @PathVariable Integer idPerfil) {
 		URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("api/ocorrencia").toUriString());
 
-		//Tornar dinamico perfil enum
+		
 		Ocorrencia ocorrencia = ocorrenciaServico.associarUsuarioOcorrencia(idOcorrencia, idUsuario,
-				PerfilEnum.ADMINISTRADOR);
+				idPerfil);
 		
 		OcorrenciaDTO resultado = conversor.convertToDTO(ocorrencia);
 		

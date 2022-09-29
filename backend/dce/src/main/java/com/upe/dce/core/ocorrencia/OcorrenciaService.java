@@ -11,7 +11,7 @@ public interface OcorrenciaService {
 
 	Ocorrencia alterarOcorrencia(Ocorrencia ocorrencia);
 	
-	Ocorrencia associarUsuarioOcorrencia(Long idOcorrencia, Long idUsuario, PerfilEnum perfil);
+	Ocorrencia associarUsuarioOcorrencia(Long idOcorrencia, Long idUsuario, Integer idPerfil);
 
 	void excluirOcorrencia(Long id);
 }
