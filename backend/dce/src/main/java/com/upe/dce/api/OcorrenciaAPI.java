@@ -49,11 +49,10 @@ public class OcorrenciaAPI {
 	@PostMapping("/ocorrencia")
 	public ResponseEntity<OcorrenciaDTO> incluirOcorrencia(@RequestBody OcorrenciaDTO dto) {
 		URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("api/ocorrencia").toUriString());
-		System.out.println("dto: " + dto.getTiposOcorrencias()); // Teste
+		
 		Ocorrencia ocorrencia = conversor.convertToEntity(dto);
-		System.out.println("conversor.convertToEntity(dto): " + ocorrencia.getTiposOcorrencia());// Teste
 		OcorrenciaDTO resultado = conversor.convertToDTO(ocorrenciaServico.incluirOcorrencia(ocorrencia));
-		System.out.println("após incluir ocorrencia: " + resultado.getTiposOcorrencias());// Teste
+		
 		return ResponseEntity.created(uri).body(resultado);
 	}
 
