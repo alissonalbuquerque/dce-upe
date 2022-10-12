@@ -26,11 +26,11 @@ public class DTOConverter {
 
 		if (ocorrencia.getTiposOcorrencia() != null && !ocorrencia.getTiposOcorrencia().isEmpty()) {
 			resultado.setTiposOcorrencias(new ArrayList<TipoOcorrenciaDTO>());
-			
+
 			ocorrencia.getTiposOcorrencia().stream()
 					.forEach(tipo -> resultado.getTiposOcorrencias().add(convertToDTO(tipo)));
 		}
-		
+
 		if (ocorrencia.getOcorrenciasUsuarios() != null && !ocorrencia.getOcorrenciasUsuarios().isEmpty()) {
 			resultado.setUsuarios(new ArrayList<OcorrenciaUsuarioDTO>());
 
@@ -47,11 +47,11 @@ public class DTOConverter {
 
 		if (dto.getTiposOcorrencias() != null && !dto.getTiposOcorrencias().isEmpty()) {
 			resultado.setTiposOcorrencia(new ArrayList<TipoOcorrencia>());
-			
+
 			dto.getTiposOcorrencias().stream()
 					.forEach(tipo -> resultado.getTiposOcorrencia().add(convertToEntity(tipo)));
 		}
-		
+
 		if (dto.getUsuarios() != null && !dto.getUsuarios().isEmpty()) {
 			resultado.setOcorrenciasUsuarios(new ArrayList<OcorrenciaUsuario>());
 
@@ -96,7 +96,8 @@ public class DTOConverter {
 	}
 
 	public UsuarioDTO convertToDTO(Usuario usuario) {
-		UsuarioDTO resultado = UsuarioDTO.builder().nome(usuario.getNome()).cpf(usuario.getCpf()).build();
+		UsuarioDTO resultado = UsuarioDTO.builder().id(usuario.getId()).nome(usuario.getNome()).cpf(usuario.getCpf())
+				.build();
 
 		if (usuario.getEnderecos() != null && !usuario.getEnderecos().isEmpty()) {
 			resultado.setEnderecos(new ArrayList<EnderecoDTO>());
