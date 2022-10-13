@@ -1,0 +1,209 @@
+{
+	"info": {
+		"_postman_id": "f39082e2-cfc8-4b48-995b-d8249cdd5878",
+		"name": "dce",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ocorrencia",
+			"item": [
+				{
+					"name": "listarOcorrencias OK",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/ocorrencias",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"ocorrencias"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscarOcorrenciaPorId Ok",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/ocorrencia/11",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"ocorrencia",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cadastrarOcorrencia OK",
+					"request": {
+						"auth": {
+							"type": "apikey"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"titulo\": \"titulo-ocorrencia-teste-nova-bazingaaa\",\n    \"descricao\": \"descricao-teste-ocorrencia-nova-bazingaaa\",\n    \"tiposOcorrencias\": [{\n        \"tipoOcorrencia\": \"PATRIMONIAL\"\n    }],\n    \"usuarios\": []\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/ocorrencia",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"ocorrencia"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "alterarOcorrencia OK",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"id\": 11,\n        \"titulo\": \"titulo-ocorrencia-teste\",\n        \"descricao\": \"descricao-teste-ocorrencia\",\n        \"tiposOcorrencias\": [{\n            \"tipoOcorrencia\": \"FISICA\" \n        }],\n        \"usuarios\": [\n            {\n                \"idOcorrencia\": 11,\n                \"idUsuario\": 13,\n                \"perfilUsuario\": \"ADMINISTRADOR\"\n            }\n        ]\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/ocorrencia/11",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"ocorrencia",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "removerOcorrencia OK",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/ocorrencia/11",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"ocorrencia",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "associarUsuarioOcorrencia OK",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/ocorrencia/20/usuario/13/perfil/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"ocorrencia",
+								"20",
+								"usuario",
+								"13",
+								"perfil",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "usuario",
+			"item": [
+				{
+					"name": "cadastrarUsuario OK",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"usuario-teste\",\n    \"cpf\": \"04629955003\",\n    \"enderecos\": [],\n    \"ocorrencias\": [],\n    \"perfis\": []\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/usuario",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listarUsuarios OK",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/usuarios",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

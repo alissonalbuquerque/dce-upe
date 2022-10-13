@@ -15,19 +15,51 @@ import com.upe.dce.core.usuario.UsuarioRepository;
 
 public class DTOConverter {
 	@Autowired
-	OcorrenciaRepository ocorrenciaRepositorio;
+	private OcorrenciaRepository ocorrenciaRepositorio;
 
 	@Autowired
-	UsuarioRepository usuarioRepositorio;
+	private UsuarioRepository usuarioRepositorio;
 
 	public OcorrenciaDTO convertToDTO(Ocorrencia ocorrencia) {
-		//TODO
-		return null;
+		OcorrenciaDTO resultado = OcorrenciaDTO.builder().id(ocorrencia.getId()).titulo(ocorrencia.getTitulo())
+				.descricao(ocorrencia.getDescricao()).build();
+
+		if (ocorrencia.getTiposOcorrencia() != null && !ocorrencia.getTiposOcorrencia().isEmpty()) {
+			resultado.setTiposOcorrencias(new ArrayList<TipoOcorrenciaDTO>());
+
+			ocorrencia.getTiposOcorrencia().stream()
+					.forEach(tipo -> resultado.getTiposOcorrencias().add(convertToDTO(tipo)));
+		}
+
+		if (ocorrencia.getOcorrenciasUsuarios() != null && !ocorrencia.getOcorrenciasUsuarios().isEmpty()) {
+			resultado.setUsuarios(new ArrayList<OcorrenciaUsuarioDTO>());
+
+			ocorrencia.getOcorrenciasUsuarios().stream()
+					.forEach(usuario -> resultado.getUsuarios().add(convertToDTO(usuario)));
+		}
+
+		return resultado;
 	}
 
 	public Ocorrencia convertToEntity(OcorrenciaDTO dto) {
-		//TODO
-		return null;
+		Ocorrencia resultado = Ocorrencia.builder().id(dto.getId()).titulo(dto.getTitulo())
+				.descricao(dto.getDescricao()).build();
+
+		if (dto.getTiposOcorrencias() != null && !dto.getTiposOcorrencias().isEmpty()) {
+			resultado.setTiposOcorrencia(new ArrayList<TipoOcorrencia>());
+
+			dto.getTiposOcorrencias().stream()
+					.forEach(tipo -> resultado.getTiposOcorrencia().add(convertToEntity(tipo)));
+		}
+
+		if (dto.getUsuarios() != null && !dto.getUsuarios().isEmpty()) {
+			resultado.setOcorrenciasUsuarios(new ArrayList<OcorrenciaUsuario>());
+
+			dto.getUsuarios().stream()
+					.forEach(usuario -> resultado.getOcorrenciasUsuarios().add(convertToEntity(usuario)));
+		}
+
+		return resultado;
 	}
 
 	public TipoOcorrenciaDTO convertToDTO(TipoOcorrencia tipoOcorrencia) {
@@ -49,7 +81,7 @@ public class DTOConverter {
 				.idOcorrencia(ocorrenciaUsuario.getOcorrencia().getId())
 				.idUsuario(ocorrenciaUsuario.getUsuario().getId()).perfilUsuario(ocorrenciaUsuario.getPerfilUsuario())
 				.build();
-		
+
 		return resultado;
 	}
 
@@ -64,7 +96,8 @@ public class DTOConverter {
 	}
 
 	public UsuarioDTO convertToDTO(Usuario usuario) {
-		UsuarioDTO resultado = UsuarioDTO.builder().nome(usuario.getNome()).cpf(usuario.getCpf()).build();
+		UsuarioDTO resultado = UsuarioDTO.builder().id(usuario.getId()).nome(usuario.getNome()).cpf(usuario.getCpf())
+				.build();
 
 		if (usuario.getEnderecos() != null && !usuario.getEnderecos().isEmpty()) {
 			resultado.setEnderecos(new ArrayList<EnderecoDTO>());
@@ -72,16 +105,45 @@ public class DTOConverter {
 			usuario.getEnderecos().stream().forEach(endereco -> resultado.getEnderecos().add(convertToDTO(endereco)));
 		}
 
-		//TODO
-		// convert ocorrenciaUsuario
-		// convert perfis
+		if (usuario.getOcorrenciasUsuarios() != null && !usuario.getOcorrenciasUsuarios().isEmpty()) {
+			resultado.setOcorrencias(new ArrayList<OcorrenciaUsuarioDTO>());
+
+			usuario.getOcorrenciasUsuarios().stream()
+					.forEach(ocorrencia -> resultado.getOcorrencias().add(convertToDTO(ocorrencia)));
+		}
+
+		if (usuario.getTipoUsuario() != null && !usuario.getTipoUsuario().isEmpty()) {
+			resultado.setPerfis(new ArrayList<TipoUsuarioDTO>());
+
+			usuario.getTipoUsuario().stream().forEach(tipo -> resultado.getPerfis().add(convertToDTO(tipo)));
+		}
 
 		return resultado;
 	}
 
 	public Usuario convertToEntity(UsuarioDTO dto) {
-		//TODO
-		return null;
+		Usuario resultado = Usuario.builder().nome(dto.getNome()).cpf(dto.getCpf()).build();
+
+		if (dto.getEnderecos() != null && !dto.getEnderecos().isEmpty()) {
+			resultado.setEnderecos(new ArrayList<Endereco>());
+
+			dto.getEnderecos().stream().forEach(endereco -> resultado.getEnderecos().add(convertToEntity(endereco)));
+		}
+
+		if (dto.getOcorrencias() != null && !dto.getOcorrencias().isEmpty()) {
+			resultado.setOcorrenciasUsuarios(new ArrayList<OcorrenciaUsuario>());
+
+			dto.getOcorrencias().stream()
+					.forEach(ocorrencia -> resultado.getOcorrenciasUsuarios().add(convertToEntity(ocorrencia)));
+		}
+
+		if (dto.getPerfis() != null && !dto.getPerfis().isEmpty()) {
+			resultado.setTipoUsuario(new ArrayList<TipoUsuario>());
+
+			dto.getPerfis().stream().forEach(tipo -> resultado.getTipoUsuario().add(convertToEntity(tipo)));
+		}
+
+		return resultado;
 	}
 
 	public TipoUsuarioDTO convertToDTO(TipoUsuario tipoUsuario) {

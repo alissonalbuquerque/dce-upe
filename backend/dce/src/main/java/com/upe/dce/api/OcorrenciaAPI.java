@@ -2,6 +2,7 @@ package com.upe.dce.api;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,8 +17,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.upe.dce.api.dtos.DTOConverter;
+import com.upe.dce.api.dtos.OcorrenciaDTO;
 import com.upe.dce.core.ocorrencia.Ocorrencia;
 import com.upe.dce.core.ocorrencia.OcorrenciaServiceImpl;
+import com.upe.dce.core.ocorrencia.PerfilEnum;
+import com.upe.dce.core.ocorrencia.TipoOcorrenciaEnum;
 
 @RequestMapping("/api")
 @RestController
@@ -26,32 +31,55 @@ public class OcorrenciaAPI {
 	@Autowired
 	private OcorrenciaServiceImpl ocorrenciaServico;
 
+	@Autowired
+	private DTOConverter conversor;
+
 	@GetMapping("/ocorrencias")
-	public ResponseEntity<List<Ocorrencia>> listarOcorrencias() {
-		return ResponseEntity.ok(ocorrenciaServico.listarOcorrencias());
+	public ResponseEntity<List<OcorrenciaDTO>> listarOcorrencias() {
+		return ResponseEntity.ok(ocorrenciaServico.listarOcorrencias().stream()
+				.map(entidade -> conversor.convertToDTO(entidade)).collect(Collectors.toList()));
 	}
 
 	@GetMapping("/ocorrencia/{id}")
-	public ResponseEntity<Ocorrencia> buscarOcorrenciaPorId(@PathVariable Long id) {
-		return ResponseEntity.ok(ocorrenciaServico.buscarPorIdOcorrencia(id));
+	public ResponseEntity<OcorrenciaDTO> buscarOcorrenciaPorId(@PathVariable Long id) {
+		OcorrenciaDTO resultado = conversor.convertToDTO(ocorrenciaServico.buscarPorIdOcorrencia(id));
+		return ResponseEntity.ok().body(resultado);
 	}
 
 	@PostMapping("/ocorrencia")
-	public ResponseEntity<Ocorrencia> incluirOcorrencia(@RequestBody Ocorrencia ocorrencia) {
+	public ResponseEntity<OcorrenciaDTO> incluirOcorrencia(@RequestBody OcorrenciaDTO dto) {
 		URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("api/ocorrencia").toUriString());
-
-		Ocorrencia novaOcorrencia = ocorrenciaServico.incluirOcorrencia(ocorrencia);
-
-		return ResponseEntity.created(uri).body(novaOcorrencia);
+		
+		Ocorrencia ocorrencia = conversor.convertToEntity(dto);
+		OcorrenciaDTO resultado = conversor.convertToDTO(ocorrenciaServico.incluirOcorrencia(ocorrencia));
+		
+		return ResponseEntity.created(uri).body(resultado);
 	}
 
-	@PutMapping("/ocorrencia")
-	public ResponseEntity<Ocorrencia> alterarOcorrencia(@RequestBody Ocorrencia ocorrencia) {
+	@PutMapping("/ocorrencia/{idOcorrencia}/usuario/{idUsuario}/perfil/{idPerfil}")
+	public ResponseEntity<OcorrenciaDTO> associarUsuarioOcorrencia(@PathVariable Long idOcorrencia,
+			@PathVariable Long idUsuario, @PathVariable Integer idPerfil) {
 		URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("api/ocorrencia").toUriString());
 
-		Ocorrencia ocorrenciaAlterada = ocorrenciaServico.alterarOcorrencia(ocorrencia);
+		
+		Ocorrencia ocorrencia = ocorrenciaServico.associarUsuarioOcorrencia(idOcorrencia, idUsuario,
+				idPerfil);
+		
+		OcorrenciaDTO resultado = conversor.convertToDTO(ocorrencia);
+		
+		return ResponseEntity.created(uri).body(resultado);
+	}
 
-		return ResponseEntity.created(uri).body(ocorrenciaAlterada);
+	@PutMapping("/ocorrencia/{id}")
+	public ResponseEntity<OcorrenciaDTO> alterarOcorrencia(@RequestBody OcorrenciaDTO dto, @PathVariable Long id) {
+		URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("api/ocorrencia").toUriString());
+
+		Ocorrencia ocorrencia = conversor.convertToEntity(dto);
+		ocorrencia.setId(id);
+
+		OcorrenciaDTO resultado = conversor.convertToDTO(ocorrenciaServico.alterarOcorrencia(ocorrencia));
+
+		return ResponseEntity.created(uri).body(resultado);
 	}
 
 	@DeleteMapping("ocorrencia/{id}")

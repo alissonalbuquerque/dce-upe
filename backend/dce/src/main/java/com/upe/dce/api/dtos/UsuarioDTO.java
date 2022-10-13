@@ -8,6 +8,7 @@ import lombok.Data;
 @Data
 @Builder
 public class UsuarioDTO {
+	private Long id;
 	private String nome;
 	private String cpf;
 	private List<EnderecoDTO> enderecos;
