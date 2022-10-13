@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>tela de cadastro</title>
-    <link rel="stylesheet" href="css/styleCadastro.css" type="text/css" >
+    <link rel="stylesheet" href="css/styleLogin.css" type="text/css" >
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
@@ -21,11 +21,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="index.html" style="margin-right: 50px; width: 40px;"> <img src="imagens/userlogin.png" width="23px"> Login
-                        </a>
-                    </li>
-                    <li>
-                        <a href="index.html" style=>
+                        <a href="cadastro.html" style="margin-right: 50px; width: 40px;"> <img src="imagens/userlogin.png" width="23px"> Registro
                         </a>
                     </li>
                 </ul>
@@ -33,20 +29,20 @@
             </div>
         </div><!-- Fim Header-->
 
-        <div id="cadastro_container">
-        	<h1>Cadastrar Usuário</h1>
+        <div id="login_container">
+        	<h1>Login</h1>
         	<div id="dataInputs"> 
-        		<input type="text" name="nome" style="width: 85%;" placeholder="Nome de Usuário" id="name">
-        		<input type="text" name="email" class="cadastro" placeholder="Cadastrar Email" id="email">
-        		<input type="text" name="password" class="cadastro" placeholder="Nova Senha" id="password">
-                <input type="text" name="password_confirm" class="cadastro" placeholder="Confirmar Senha" id="password_confirm">
-    
-        		<button id="btnCadastrar">Cadastrar</button>
+        		<input type="text" name="email" class="login" placeholder="Email" id="email">
+                <div class="row">
+        		<input type="password" name="password" class="senha" placeholder="Senha" id="password">
+                <img src="imagens/mostrarsenha.png" class="btn" width="20px" >
+                </div>
+        		<button id="btnLogin" value="Enviar">Entrar</button>
         		
         	</div>
         </div>
     </div><!-- Fim Principal-->
 
-    <script src="script/scriptCadastro.js"></script>
+    <script src="script/scriptLogin.js"></script>
 </body>
 </html>

@@ -18,27 +18,27 @@ textarea{
 	resize: none;
 }
 
-#principal {
+.principal {
 	width: 100%;
 	min-width: 1000px;
 }
 
-#navegacao{
+.navegacao{
 	position: flex;
 }
 
-#navegacao ul{
+.navegacao ul{
 	position: relative;
 	float: right;
 	width: 24%;
 	height: 80px;
 }
 
-#navegacao ul li{
+.navegacao ul li{
 	float: left;
 }
 
-#navegacao ul a{
+.navegacao ul a{
 	width: 60px;
 	font-weight: 600;
 	font-size: 12px;
@@ -50,7 +50,7 @@ textarea{
 	padding-top: 1.5em;
 }
 
-#header_container{
+.header_container{
 	width: 100%;
 	height: 80px;
 	background: #FCFCFC;
@@ -58,18 +58,18 @@ textarea{
 	border-radius: 0px;
 }
 
-#cadastro_container{
+.cadastro_container{
 	margin: 30px auto;
 	max-width: 800px;
 	width: 50%;
-	height: 743px;
+	height: auto;
 	background: #FFFFFF;
 	box-shadow: 0px 0px 20px rgba(221, 221, 221, 0.25);
 	border-radius: 20px;
 	justify-content: center;
 	padding: 20px;
 	}
-#cadastro_container h1{
+.cadastro_container h1{
 	text-align: center;
 	font-family: 'Poppins';
 	font-style: normal;
@@ -79,10 +79,10 @@ textarea{
 	text-transform: uppercase;
     font-weight: bold;
 
-	color: rgba(64, 169, 68, 0.9);
+	color: #2F7603;
 }
 
-#dataInputs{
+.dataInputs{
 	margin: 50px auto;
 	width: 100%;
 	display: grid;
@@ -90,7 +90,7 @@ textarea{
 	gap: 50px 30px;
 	justify-content: center;
 }
-#dataInputs input{
+.dataInputs input{
 	padding: 5px 10px;
 	border: none;
 	background: transparent;
@@ -104,26 +104,26 @@ textarea{
 }
 
 
-#btnCadastrar{
+.btnCadastrar{
 	width: auto;
 	height: 55px;
 	background: #FDFDFD;
-	box-shadow: 0px 0px 8px;
+	box-shadow: 2px 3px 3px 4px rgba(47, 118, 3, 0.5);
 	border: rgba(64, 169, 68, 0.25);
 	border-radius: 100px;
-	font-family: 'Poppins';
-	font-weight: 500;
+	font-family: 'Inter';
+	font-weight: 700;
 	font-size: 20px;
 	line-height: 30px;
 	text-align: center;
 	color: #40A944;
 	cursor: pointer;
 }
-#btnCadastrar:hover {
+.btnCadastrar:hover {
 	border: 4px solid rgba(64, 169, 68, 0.25);
 }
 
-#btnCadastrar:active {
+.btnCadastrar:active {
 	margin-top: 3px;
 }
 .machine_data{

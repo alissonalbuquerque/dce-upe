@@ -1,0 +1,143 @@
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+body{
+	font-family: 'Poppins';
+	background: #F8F8FF;
+}
+
+ul{
+	padding: 0;
+	list-style: none;
+	
+}
+
+textarea{
+	resize: none;
+}
+
+#principal {
+	width: 100%;
+	min-width: 1000px;
+}
+
+.navegacao{
+	position: flex;
+}
+
+.navegacao ul{
+	position: relative;
+	float: right;
+	width: 24%;
+	height: 80px;
+}
+
+.navegacao ul li{
+	float: left;
+}
+
+.navegacao ul a{
+	width: 60px;
+	font-weight: 600;
+	font-size: 12px;
+	line-height: 18px;
+	text-align: center;
+	display: block;
+	text-decoration: none;
+	color: #6D6D6D;
+	padding-top: 1.5em;
+}
+
+.header_container{
+	width: 100%;
+	height: 80px;
+	background: #FCFCFC;
+	box-shadow: 1px 1px 15px rgba(183, 183, 183, 0.25);
+	border-radius: 0px;
+}
+
+.login_container{
+	margin: 30px auto;
+	max-width: 800px;
+	width: 50%;
+	height: auto;
+	background: #FFFFFF;
+	box-shadow: 0px 0px 20px rgba(221, 221, 221, 0.25);
+	border-radius: 20px;
+	justify-content: center;
+	padding: 20px;
+	}
+
+.login_container h1{
+    
+	text-align: center;
+	text-transform: uppercase;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    height: 24px;
+	color: #2F7603;
+}
+
+.dataInputs{
+	margin: 50px auto;
+	width: 100%;
+	display: grid;
+	flex-wrap: wrap;
+	gap: 50px 30px;
+	justify-content: center;
+}
+.dataInputs input{
+	padding: 5px 10px;
+	border: none;
+	background: transparent;
+	outline: none;
+	border-bottom: 2px solid rgba(64, 169, 68, 0.9);
+	font-family: 'Poppins';
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 24px;
+	color: #6D6D6D;
+}
+
+
+.btnLogin{
+    width: auto;
+    height: 55px;
+    background: #FDFDFD;
+    box-shadow: 2px 3px 3px 4px rgba(47, 118, 3, 0.5);
+    border: rgba(64, 169, 68, 0.25);
+    border-radius: 100px;
+    font-family: 'Inter';
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 19px;
+    text-align: center;
+    color: #40A944;
+    cursor: pointer;
+    font-style: normal;
+    
+}
+.btnLogin:hover {
+	border: 4px solid rgba(64, 169, 68, 0.5);
+}
+
+.btnCadastrar:active {
+	margin-top: 3px;
+}
+.machine_data{
+	width: 40%;
+}
+
+.logo{
+	position: absolute;
+	width: 65px;
+	height: 66.68px;
+	left: 25px;
+	top: 10px;
+	border-radius: 10px;
+}
