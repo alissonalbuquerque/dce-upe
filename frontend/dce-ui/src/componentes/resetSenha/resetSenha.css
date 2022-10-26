@@ -39,7 +39,7 @@ textarea{
 }
 
 .navegacao ul a{
-	width: 50px;
+	width: 60px;
 	font-weight: 600;
 	font-size: 13px;
 	line-height: 18px;
@@ -47,8 +47,7 @@ textarea{
 	display: block;
 	text-decoration: none;
 	color: #1C1C1C;
-	padding-top: 0.6em;
-	margin-right: 20px;
+	padding-top: 0.5em;
 }
 
 .header_container{
@@ -59,7 +58,7 @@ textarea{
 	border-radius: 0px;
 }
 
-.cadastro_container{
+.login_container{
 	margin: 30px auto;
 	max-width: 800px;
 	width: 50%;
@@ -70,16 +69,18 @@ textarea{
 	justify-content: center;
 	padding: 20px;
 	}
-.cadastro_container h1{
-	text-align: center;
-	font-family: 'Poppins';
-	font-style: normal;
-	font-size: 20px;
-	line-height: 36px;
+
+
+.login_container h1{
+    
 	text-align: center;
 	text-transform: uppercase;
-    font-weight: bold;
-
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    height: 24px;
 	color: #2F7603;
 }
 
@@ -102,38 +103,59 @@ textarea{
 	font-size: 14px;
 	line-height: 24px;
 	color: #6D6D6D;
+	width: 300px;
 }
-
 
 .btnLogin{
-  align-items: center;
-  background-color: #fee6e3;
-  border: 2px solid #111;
-  border-radius: 8px;
-  box-sizing: border-box;
-  color: #111;
-  cursor: pointer;
-  display: flex;
-  font-family: Inter,sans-serif;
-  font-size: 16px;
-  height: 48px;
-  justify-content: center;
-  line-height: 24px;
-  max-width: 100%;
-  padding: 0 25px;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
-.btnLogin:hover {
-	border: 4px solid rgba(64, 169, 68, 0.25);
+    align-items: center;
+    background-color: #fee6e3;
+    border: 2px solid #111;
+    border-radius: 8px;
+    box-sizing: border-box;
+    color: #111;
+    cursor: pointer;
+    display: flex;
+    font-family: Inter,sans-serif;
+    font-size: 16px;
+    height: 48px;
+    justify-content: center;
+    line-height: 24px;
+    max-width: 100%;
+    padding: 0 25px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
 }
 
-.btnLogin:active {
-	margin-top: 3px;
+.btnLogin:after {
+    background-color: #111;
+    border-radius: 8px;
+    content: "";
+    display: block;
+    height: 48px;
+    left: 0;
+    width: 100%;
+    position: absolute;
+    top: -2px;
+    transform: translate(8px, 8px);
+    transition: transform .2s ease-out;
+    z-index: -1;
+  }
+.btnLogin:hover {
+	outline: 0;
+}
+
+.btnLogin:hover:after {
+    transform: translate(0, 0);
+  }
+
+ 
+.btnCadastrar:active {
+    background-color: #ffdeda;
+    outline: 0;
 }
 .machine_data{
 	width: 40%;

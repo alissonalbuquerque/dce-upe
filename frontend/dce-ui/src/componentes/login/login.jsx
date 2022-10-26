@@ -1,25 +1,23 @@
 import './styleLogin.css';
 import './scriptLogin';
-import userLogin from '../imagens/userlogin.png'
-import homee from '../imagens/homee.png'
-import mostrarSenha from '../imagens/mostrarsenha.png'
+import userLogin from '../imagens/userlogin.png';
+import {Link} from 'react-router-dom';
+import homee from '../imagens/homee.png';
+import mostrarSenha from '../imagens/mostrarsenha.png';
 
 function Login() {
   return (
     <div>
     <div className="principal">
         <div className="header_container">
-               <a className="logo"><img src="" width="100px"></img></a>
 
                <div className = "navegacao">
                 <ul >
                     <li>
-                    <a href="/" ><img src={homee} width="30px" margin-right="50px"/> Inicio
-                        </a>
+                    <Link to="/" ><img src={homee} width="30px" margin-right="50px"></img>Inicio</Link>              
                     </li>
                     <li>
-                        <a href="Cadastro"><img src={userLogin} width="30px" margin-right="50px"/> Registro
-                        </a>
+                        <Link to="Cadastro"><img src={userLogin} width="30px" margin-right="50px"></img>Registro</Link>
                     </li>
                 </ul>
             </div>
@@ -32,12 +30,15 @@ function Login() {
         		<input type="text" name="email"  placeholder="Email" className="email"></input>
                 <div className="row">
         		<input type="password" name="password"  placeholder="Senha" className="senha"></input>
-                <img src={mostrarSenha} alt= "" className="btn" type="button" width="20px"/>
+                <img src={mostrarSenha} alt= "" className="btn" type="button" width="20px"/>            
                 </div>
-                <div className="login-links mt-5">
-                    <a href="#" className="mx-3">Esqueceu a senha?</a>
+                <div className="login-links_mt-3">
+                    <Link to="Recuperar" className="mx-1">Esqueceu a senha?</Link>
+                    <Link to="Cadastro" style={{marginLeft: "100px"}} className="mx-2">Criar conta</Link>
                 </div>
-        		<button className="btnLogin" value="Enviar">Entrar</button>      		
+                <Link to="/Inicio">
+        		<button className="btnLogin" value="Enviar">Entrar</button>
+                </Link>      		
         	</div>
             
         </div>

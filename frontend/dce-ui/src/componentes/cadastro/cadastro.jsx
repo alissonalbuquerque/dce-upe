@@ -1,18 +1,17 @@
-import './styleCadastro.css'
-import homee from '../imagens/homee.png'
+import './styleCadastro.css';
+import {Link} from 'react-router-dom';
+import homee from '../imagens/homee.png';
 
 function Cadastrar() {
     return (
         <div>
         <div className="principal">
                 <div className="header_container">
-               <a className="logo"><img src="imagens/upe-logo.png" width="100px"/></a>
 
                <div className = "navegacao">
                 <ul >
                     <li>
-                    <a href="/"> <img src={homee} width="30px" margin-right="50px"/> Inicio
-                        </a>
+                    <Link to="/" ><img src={homee} width="30px" margin-right="50px"></img>Inicio</Link>                                   
                     </li>
                 </ul>
                 </div>
@@ -30,7 +29,11 @@ function Cadastrar() {
                     
                     <input type="text" name="password_confirm" className="cadastro" placeholder="Confirmar Senha"/>
     
-        		    <button className="btnCadastrar">Cadastrar</button>
+                    <div className="login-links_mt-3">
+                    <Link to="/" className="mx-3">Já tenho uma conta.</Link>
+                    </div>
+
+        		    <button className="btnLogin">Cadastrar</button>
         		
         	    </div>
 
