@@ -49,6 +49,13 @@ public class Ocorrencia extends Entidade {
 	)
 	private String descricao;
 
+	@NotBlank(message = "Os atributos físicos do agressor é obrigatória")
+	@Size(message = "A atributos físicos do agressor deve estar entre 20 e 200 caracteres", min = 20, max = 200)
+	private String atributosFisicosAgressor;
+
+	@Size(message = "Os detalhes dito pela testemunha deve estar entre 20 e 400 caracteres", min = 20, max = 400)
+	private String detalhesTestemunhas;
+
 	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST,
 			CascadeType.MERGE }, targetEntity = TipoOcorrencia.class)
 	private List<TipoOcorrencia> tiposOcorrencia;
